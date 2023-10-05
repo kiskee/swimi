@@ -48,7 +48,7 @@ function Navbar() {
   }
 
   return (
-    <nav className="bg-indigo-950 border-gray-200">
+    <nav className="bg-indigo-950 border-gray-200 sticky top-0">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/" className="flex items-center">
           <Image
