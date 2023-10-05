@@ -1,0 +1,16 @@
+{
+  "resourceName": "blogImages",
+  "policyUUID": "cf5cc45c",
+  "bucketName": "blog-images",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

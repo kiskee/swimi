@@ -1,0 +1,33 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-swim-dev-144437-authRole",
+      "UnauthRoleArn": "arn:aws:iam::101101632782:role/amplify-swim-dev-144437-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::101101632782:role/amplify-swim-dev-144437-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-swim-dev-144437-deployment",
+      "UnauthRoleName": "amplify-swim-dev-144437-unauthRole",
+      "StackName": "amplify-swim-dev-144437",
+      "StackId": "arn:aws:cloudformation:us-east-1:101101632782:stack/amplify-swim-dev-144437/8b689d10-25a3-11ee-bf96-0eb058615c75",
+      "AmplifyAppId": "d3lvilxo9mrh77"
+    },
+    "categories": {
+      "function": {
+        "emailcandidate": {
+          "sesEmail": "nieladverse@gmail.com",
+          "deploymentBucketName": "amplify-swim-dev-144437-deployment",
+          "s3Key": "amplify-builds/emailcandidate-543764395132384b5564-build.zip"
+        }
+      },
+      "auth": {
+        "swim1ad60c46": {}
+      },
+      "api": {
+        "swim": {}
+      },
+      "storage": {
+        "blogImages": {}
+      }
+    }
+  }
+}
