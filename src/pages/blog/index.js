@@ -3,6 +3,10 @@ import { API, Storage, graphqlOperation } from "aws-amplify";
 import Link from "next/link";
 import { listTodos } from "@/graphql/queries";
 import { newOnCreateTodo } from "@/graphql/subscriptions";
+import svgPhoto from '../../../public/sergio-1.png'
+import Image from "next/image";
+import ReactMarkDown from "react-markdown";
+
 
 function BlogPage() {
   const [posts, setPosts] = useState([]);
@@ -94,7 +98,7 @@ function BlogPage() {
             ))}
         </Link>
   */
-
+console.log(posts)
   return (
     <>
       <h1 className="text-6xl font-semibold tracking-wide mt-6 mb-8 text-center text-indigo-950">
@@ -116,21 +120,44 @@ function BlogPage() {
           </div>
           <div className="pl-4 flex-col grid content-between p-4">
             <div className="flex gap-8">
-              <p className="font-bold">{new Date(post.createdAt).toLocaleDateString("es-ES", { month: "long", day: "2-digit", year: "numeric" })}</p>
-              <p className="text-purple-800 font-bold">3 MIN READ</p>
+              <p className="font-bold">
+                {new Date(post.createdAt).toLocaleDateString("es-ES", {
+                  month: "long",
+                  day: "2-digit",
+                  year: "numeric",
+                })}
+              </p>
+              <p className="text-purple-800 font-bold">3 MIN DE LECTURA</p>
+              <span class="text-sm font-medium mr-2 px-2.5 py-0.5 rounded bg-indigo-900 text-white">
+                {post.category}
+              </span>
             </div>
+
             <Link href={`/blog/${post.id}`}>
               <h2 className="text-3xl font-bold">{post.name}</h2>
             </Link>
-
+          
             <p>
-              {post.description.charAt(0).toUpperCase() +
+            <ReactMarkDown >{post.description.charAt(0).toUpperCase() +
                 post.description.slice(1).substr(0, 150) +
-                "..."}
+                "..."}</ReactMarkDown>
+              
             </p>
-            <p className="font-bold">Por: Sergio Valiente Gomez</p>
+            <div className="flex items-center space-x-2">
+              <Image
+                className="w-8 h-10  rounded-full bg-contain bg-center"
+                src={svgPhoto}
+                alt="sergio"
+              />
+              <div className="font-medium text-black">
+                <div>Sergio Valiente Gomez</div>
+              </div>
+              {post.Comments.items.length > 0 ? <div>{post.Comments.items.length} Comentarios</div>  : <div>No hay Comentarios Aun</div>}
+             
+            </div>
           </div>
         </div>
+        
       ))}
     </>
   );

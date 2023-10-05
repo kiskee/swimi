@@ -176,8 +176,12 @@ export const getTodo = /* GraphQL */ `
       description
       image
       Comments {
-        nextToken
-        __typename
+        items {
+          description
+          id
+          userName
+          createdAt
+        }
       }
       Likes {
         nextToken

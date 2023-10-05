@@ -1,6 +1,7 @@
 import { withAuthenticator } from "@aws-amplify/ui-react";
-import {  useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { API, Storage } from "aws-amplify";
+import { Auth } from "aws-amplify";
 import { useRouter } from "next/router";
 import { v4 as uuid } from "uuid";
 import dynamic from "next/dynamic";
@@ -10,7 +11,7 @@ const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
 import "easymde/dist/easymde.min.css";
 import { createTodo } from "@/graphql/mutations";
 
-const initialState = { name: "", description: "" , category: "General"};
+const initialState = { name: "", description: "", category: "General" };
 
 function CreatePost() {
   const [post, setPost] = useState(initialState);
@@ -18,6 +19,11 @@ function CreatePost() {
   const router = useRouter();
   const [image, setImage] = useState(null);
   const imageFileInput = useRef(null);
+  const [admin, setAdmin] = useState(null);
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   function onChange(e) {
     setPost(() => ({
@@ -27,7 +33,7 @@ function CreatePost() {
   }
 
   async function createNewPost() {
-    if (!name || !description ) return;
+    if (!name || !description) return;
     //const id = uuid();
     //post.id = id;
     if (image) {
@@ -35,16 +41,14 @@ function CreatePost() {
       post.image = filename;
       await Storage.put(filename, image);
     }
-    
-    
-    const newPost = await API.graphql({
-        query: createTodo,
-        variables: {
-          input: post
-        }
-      })
 
-      
+    const newPost = await API.graphql({
+      query: createTodo,
+      variables: {
+        input: post,
+      },
+    });
+
     router.push(`/blog/${newPost.data.createTodo.id}`);
     //router.push(`/blog`);
   }
@@ -56,6 +60,19 @@ function CreatePost() {
     const fileUploaded = e.target.files[0];
     if (!fileUploaded) return;
     setImage(fileUploaded);
+  }
+
+  async function getUser() {
+    try {
+      const resp = await Auth.currentSession();
+      if (resp == "No current user") return;
+      setAdmin(resp?.idToken.payload["cognito:groups"]?.[0]);
+    } catch (error) {}
+  }
+
+  if (admin != "admin") {
+    router.push("/blog");
+    return null;
   }
 
   return (
@@ -97,21 +114,21 @@ function CreatePost() {
         <option value="Progresos">Progresos</option>
         <option value="Pronosticos">Pronosticos</option>
       </select>
-      {image && <img src={URL.createObjectURL(image)} className='my-4' />}
+      {image && <img src={URL.createObjectURL(image)} className="my-4" />}
       <SimpleMDE
         value={post.description}
         onChange={(value) => setPost({ ...post, description: value })}
       />
       <input
-        type='file'
+        type="file"
         ref={imageFileInput}
-        className='absolute w-0 h-0'
+        className="absolute w-0 h-0"
         onChange={handleChange}
       />
       <button
-        type='button'
-        className='bg-green-600 text-white 
-        font-semibold px-8 py-2 rounded-lg mr-2'
+        type="button"
+        className="bg-green-600 text-white 
+        font-semibold px-8 py-2 rounded-lg mr-2"
         onClick={uploadImage}
       >
         Imagen del Post
