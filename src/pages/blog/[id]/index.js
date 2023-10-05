@@ -57,13 +57,18 @@ function SinglePostPage({ post }) {
     } catch (error) {
       console.log(error);
     }
-    router.push("/");
+    router.push("/blog");
   }
 
   async function getUser(){
-    const resp = await Auth.currentSession()
-    setuser(resp.idToken.payload.name)
-    setAdmin(resp.idToken.payload['cognito:groups'])
+    try {
+      const resp = await Auth.currentSession();
+      if (resp == "No current user") return;
+      setAdmin(resp?.idToken.payload["cognito:groups"]?.[0]);
+      setuser(resp.idToken.payload.name)
+    } catch (error) {
+      //console.log(error);
+    }
   }
   //console.log(comment)
   return (

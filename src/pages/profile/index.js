@@ -1,9 +1,12 @@
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import { Auth } from "aws-amplify";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+
 
 function Profile() {
   const [user, setUser] = useState(null);
+  const router = useRouter();
   useEffect(() => {
     checkUser();
   }, []);
@@ -12,7 +15,14 @@ function Profile() {
     const user = await Auth.currentAuthenticatedUser();
     setUser(user);
   }
-  console.log(user);
+  //console.log(user);
+
+  async function logOut(){
+    try {
+      const outUser = await Auth.signOut()
+      router.push(`/`);
+    } catch (error) {}
+  }
 
   if (!user) return <>Not</>;
   return (
@@ -32,7 +42,7 @@ function Profile() {
         </p>
         <button
           className="block py-2 pl-3 pr-4 rounded hover:bg-gray-100  md:p-0 text-red-600"
-          onClick={() => Auth.signOut()}
+          onClick={logOut}
         >
           Signout
         </button>
