@@ -9,6 +9,8 @@ import "easymde/dist/easymde.min.css";
 import { updateTodo } from "@/graphql/mutations";
 import { getTodo } from "@/graphql/queries";
 import { v4 as uuid } from "uuid";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import { Auth } from "aws-amplify";
 
 function EditPost(){
     const [post, setPost] = useState(null);
@@ -17,6 +19,7 @@ function EditPost(){
   const fileInput = useRef(null);
     const router = useRouter();
     const { id } = router.query;
+    const [admin, setAdmin] = useState(null);
     
 
     useEffect(() => {
@@ -80,6 +83,19 @@ function EditPost(){
         router.push("/");
       }
 
+      async function getUser() {
+        try {
+          const resp = await Auth.currentSession();
+          if (resp == "No current user") return;
+          setAdmin(resp?.idToken.payload["cognito:groups"]?.[0]);
+        } catch (error) {}
+      }
+    
+      if (admin != "admin") {
+        router.push("/blog");
+        return null;
+      }
+
 
 
     return (
@@ -124,4 +140,4 @@ function EditPost(){
     )
 }
 
-export default EditPost
+export default withAuthenticator(EditPost)

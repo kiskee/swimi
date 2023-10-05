@@ -72,11 +72,13 @@ function SinglePostPage({ post }) {
   //console.log(comment)
   return (
     <>
-      <h1 className="text-5xl mt-4 mb-4 font-semibold tracing-wide">{post.name.charAt(0).toUpperCase() + post.name.slice(1)}</h1>
+      <h1 className="text-5xl mt-4 mb-4 font-semibold tracing-wide">
+        {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
+      </h1>
       {coverImage && <img src={coverImage} className="mt4" />}
       <p className="text-sm font-light my-4">Por: Sergio Valiente Gomez</p>
       <div className="mt-8">
-  <ReactMarkDown   children={post.description} />
+        <ReactMarkDown children={post.description} />
       </div>
       <div>
         {post.Comments.items.length > 0 &&
