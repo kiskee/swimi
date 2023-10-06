@@ -16,6 +16,7 @@
     "react-dom": "^18",
     "react-markdown": "^9.0.0",
     "react-simplemde-editor": "^5.2.0",
+    "tw-elements": "^1.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

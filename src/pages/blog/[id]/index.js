@@ -95,7 +95,11 @@ function SinglePostPage({ post }) {
               <div>
                 <p className="text-gray-500 mt-2">{comment.description}</p>
                 <p className="text-red-400 mt-1">{comment.userName}</p>
-                <p className="text-slate-950 mt-1">{comment.createdAt}</p>
+                <p className="text-slate-950 mt-1">{new Date(comment.createdAt).toLocaleDateString("es-ES", {
+                  month: "long",
+                  day: "2-digit",
+                  year: "numeric",
+                })}</p>
               </div>
             </div>
           ))}
