@@ -168,7 +168,7 @@ if (admin === undefined) {
         Crear Nuevo Post
       </button>{" "}
     </>) : (<>
-     <p>No tienes permisos de administrador.</p>
+     <p className="mt-8">No tienes permisos de administrador.</p>
      <button
         type="button"
         className="mb-4 bg-blue-600 text-white 

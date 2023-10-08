@@ -163,9 +163,9 @@ function BlogPage() {
 console.log(posts)
   return (
     <>
-    <div class="container mt-24 mx-auto md:px-6">
+    <div class="container mt-4 mx-auto md:px-6">
       <section class="text-center md:text-left">
-        <h2 class="mb-12 text-center text-4xl font-bold">Ultimos Articulos publicados</h2>
+        <h2 class="mb-4 text-center text-4xl font-bold">Ultimos Articulos publicados</h2>
 
         {posts.map((post, index) => (
             <div class="mb-6 flex flex-wrap border rounded border-black mb-4 bg-indigo-950 pt-4" key={index}>
@@ -188,7 +188,9 @@ console.log(posts)
             </div>
 
             <div class="mb-6 mr-auto px-3 md:mb-0 md:w-8/12 xl:w-7/12">
+            <Link href={`/blog/${post.id}`}>
               <h5 class="mb-3 text-xl font-bold text-white">{post.name}</h5>
+              </Link>
               <div class="mb-3 flex items-center justify-center text-sm font-medium text-green-500 dark:text-danger-500 md:justify-start">
                 {post.category}
               </div>

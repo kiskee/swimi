@@ -207,16 +207,7 @@ function Navbar() {
                 Blog
               </Link>
             </li>
-            {admin == "admin" && (
-              <li>
-                <Link
-                  href="/blog/create"
-                  className="block py-2 pl-3 pr-4 rounded !text-red-500"
-                >
-                  Nuevo Post
-                </Link>
-              </li>
-            )}
+            
             <li>
               <Link
                 href="/contact"
@@ -277,6 +268,16 @@ function Navbar() {
                       Perfil
                     </Link>
                   </li>
+                  {admin == "admin" && (
+                    <li>
+                    <Link
+                      href="/blog/create"
+                      className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal !text-red-500 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+                    >
+                      Nuevo Post
+                    </Link>
+                  </li>
+                  )}
                   <li>
                     <p
                       href="/profile"
