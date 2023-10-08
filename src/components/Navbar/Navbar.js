@@ -19,7 +19,7 @@ function Navbar() {
       initTE({ Collapse, Dropdown });
     };
     init();
-  }, []);
+  }, [signedInUser]);
 
   async function logOut() {
     try {
@@ -139,7 +139,7 @@ function Navbar() {
 */
 
   return (
-    <nav className="fixed top-0 flex w-full flex-wrap items-center justify-between bg-indigo-950 py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700  lg:py-4">
+    <nav className="fixed top-0 flex w-full flex-wrap items-center justify-between bg-indigo-950 py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700  lg:py-4 z-40">
       <div className="flex w-full flex-wrap items-center justify-between px-3">
         <button
           className="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"

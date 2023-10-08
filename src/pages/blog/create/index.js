@@ -22,6 +22,26 @@ function CreatePost() {
   const [admin, setAdmin] = useState(null);
 
   useEffect(() => {
+    async function getUser() {
+      try {
+        const resp = await Auth.currentSession();
+        if (resp === "No current user") {
+          // Si no hay usuario, puedes manejarlo aquí, por ejemplo, redirigir a la página de inicio de sesión.
+          return;
+        }
+        const userGroups = resp?.idToken.payload["cognito:groups"];
+        if (userGroups && userGroups.length > 0) {
+          // Establecer el primer grupo como admin
+          setAdmin(userGroups[0]);
+        } else {
+          // Si el usuario no tiene ningún grupo, no es admin
+          setAdmin(null);
+        }
+      } catch (error) {
+        // Manejar errores aquí si es necesario
+      }
+    }
+
     getUser();
   }, []);
 
@@ -62,6 +82,7 @@ function CreatePost() {
     setImage(fileUploaded);
   }
 
+  /*
   async function getUser() {
     try {
       const resp = await Auth.currentSession();
@@ -69,14 +90,19 @@ function CreatePost() {
       setAdmin(resp?.idToken.payload["cognito:groups"]?.[0]);
     } catch (error) {}
   }
+  
 
   if (admin != "admin") {
     router.push("/blog");
     return null;
   }
-
+*/
+if (admin === undefined) {
+  return null;
+}
   return (
     <>
+    {admin ? (<>
       <h1 className="text-4xl">Nuevo Post </h1>
       <input
         onChange={onChange}
@@ -141,6 +167,18 @@ function CreatePost() {
       >
         Crear Nuevo Post
       </button>{" "}
+    </>) : (<>
+     <p>No tienes permisos de administrador.</p>
+     <button
+        type="button"
+        className="mb-4 bg-blue-600 text-white 
+     font-semibold px-8 py-2 rounded-lg"
+        onClick={()=>{router.push("/blog")}}
+      >
+        Inicio
+      </button>{" "}
+    </>)}
+      
     </>
   );
 }
