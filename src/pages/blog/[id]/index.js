@@ -37,6 +37,10 @@ function SinglePostPage({ post }) {
         if (resp === "No current user") {
           return;
         }
+        const userGroups = resp?.idToken.payload["cognito:groups"];
+        if (userGroups && userGroups.length > 0) {
+          setAdmin(userGroups[0]);
+        }
         setuser(resp.idToken.payload.name);
       } catch (error) {
         console.error("Error al obtener la sesión:", error);
@@ -97,7 +101,7 @@ function SinglePostPage({ post }) {
     router.push("/blog");
   }
 
- 
+  console.log(admin)
   return (
     <>
       <h1 className="text-5xl mt-4 mb-4 font-semibold tracing-wide">
@@ -143,6 +147,8 @@ function SinglePostPage({ post }) {
             >
               Escribe un comentario
             </button>
+            {admin && (
+            <>
             <button
               type="button"
               class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] ml-4"
@@ -160,6 +166,9 @@ function SinglePostPage({ post }) {
             >
               Actualizar Post
             </Link>
+            </>
+            )}
+            
             <div
               data-te-modal-init
               class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
@@ -238,7 +247,6 @@ function SinglePostPage({ post }) {
           </>
         ) : (
           <button
-            
             className="mb-4 bg-green-600 
       text-white font-semibold px-8 py-2 rounded-lg mt-8"
           >
