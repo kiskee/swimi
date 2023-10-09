@@ -15,3 +15,7 @@
       }
 
   }
+
+  .amplify-button[type="submit"]{
+    background-color: #1e1b4b;
+  }

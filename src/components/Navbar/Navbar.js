@@ -177,7 +177,7 @@ function Navbar() {
           >
             <Image
               src={svgLogo}
-              style={{ height: 70, width: 70 }}
+              style={{ height: 70, width: 82 }}
               alt="TE Logo"
               loading="lazy"
             />

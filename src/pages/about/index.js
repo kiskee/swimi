@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import svgLogo from "../../../public/svg-final.png";
+import sergioImage from "../../../public/sergio-1.png";
 import Image from "next/image";
 
 function AboutPage() {
@@ -13,149 +14,175 @@ function AboutPage() {
 
   return (
     <>
-      <nav class="fixed top-0 flex-no-wrap relative flex w-full items-center justify-between bg-[#FBFBFB] py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-4">
-        <div class="flex w-full flex-wrap items-center justify-between px-3">
-          <button
-            class="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
-            type="button"
-            data-te-collapse-init
-            data-te-target="#navbarSupportedContent1"
-            aria-controls="navbarSupportedContent1"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="[&>svg]:w-7">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="h-7 w-7"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </span>
-          </button>
-
-          <div
-            class="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto"
-            id="navbarSupportedContent1"
-            data-te-collapse-item
-          >
-            <a
-              class="mb-4 ml-2 mr-5 mt-3 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0"
-              href="#"
-            >
+      <div class="container my-24 mx-auto md:px-6">
+        <section class="mb-32">
+          <div class="flex flex-wrap">
+            <div class="w-full shrink-0 grow-0 basis-auto md:w-2/12 lg:w-3/12">
               <Image
-                src={svgLogo}
-                style={{ height: 70, width: 70 }}
-                alt="TE Logo"
-                loading="lazy"
+                src={sergioImage}
+                class="mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20"
+                alt="Avatar"
               />
-            </a>
+            </div>
 
-            <h1 className="text-3xl">SVG Natacion</h1>
-          </div>
+            <div class="w-full shrink-0 grow-0 basis-auto text-center md:w-10/12 md:pl-6 md:text-left lg:w-9/12">
+              <h5 class="mb-6 text-2xl font-semibold text-center text-black">
+                Sergio Valiente Gómez
+              </h5>
 
-          <div class="relative flex items-center">
-           
-          <ul
-              class="list-style-none mr-auto flex flex-col pl-0 lg:flex-row"
-              data-te-navbar-nav-ref
-            >
-              <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                <a
-                  class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400"
-                  href="#"
-                  data-te-nav-link-ref
-                >
-                  Dashboard
-                </a>
-              </li>
-
-              <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                <a
-                  class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                  href="#"
-                  data-te-nav-link-ref
-                >
-                  Team
-                </a>
-              </li>
-
-              <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                <a
-                  class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                  href="#"
-                  data-te-nav-link-ref
-                >
-                  Projects
-                </a>
-              </li>
-            </ul>
-
-            <div
-              class="relative"
-              data-te-dropdown-ref
-              data-te-dropdown-alignment="end"
-            >
-              <a
-                class="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
-                href="#"
-                id="dropdownMenuButton2"
-                role="button"
-                data-te-dropdown-toggle-ref
-                aria-expanded="false"
-              >
-                <img
-                  src="https://tecdn.b-cdn.net/img/new/avatars/2.jpg"
-                  class="rounded-full"
-                  style={{ height: 25, width: 25 }}
-                  alt=""
-                  loading="lazy"
-                />
-              </a>
-
-              <ul
-                class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
-                aria-labelledby="dropdownMenuButton2"
-                data-te-dropdown-menu-ref
-              >
-                <li>
-                  <a
-                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                    href="#"
-                    data-te-dropdown-item-ref
-                  >
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                    href="#"
-                    data-te-dropdown-item-ref
-                  >
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                    href="#"
-                    data-te-dropdown-item-ref
-                  >
-                    Something else here
-                  </a>
-                </li>
-              </ul>
+              <p>
+                Sergio Valiente Gómez es un distinguido profesional en el campo
+                del deporte, específicamente en la natación. Nació el 14 de
+                julio de 1944 y ha dedicado gran parte de su vida a la formación
+                y entrenamiento de nadadores de alto rendimiento. A lo largo de
+                su carrera, ha obtenido una amplia gama de estudios y
+                certificaciones en el ámbito deportivo, incluyendo una
+                licenciatura en el Instituto Superior de Cultura Física de La
+                Habana, Cuba, y un máster en Natación del Instituto Superior
+                Alemán de Cultura Física en Leipzig, antigua RDA.
+              </p>
+              <br />
+              <p>
+                Valiente Gómez ha ocupado diversas posiciones, desde entrenador
+                de enseñanza hasta director técnico nacional en Cuba y la
+                Federación Colombiana de Natación. Además, ha tenido una
+                destacada presencia en organismos deportivos internacionales,
+                incluyendo su papel como directivo en la Confederación
+                Centroamericana y del Caribe, así como presidente del Comité
+                Técnico de Natación de la PANAM ACUATICS.
+              </p>
+              <br />
+              <p>
+                Además de su trabajo en el ámbito deportivo, Valiente Gómez ha
+                contribuido significativamente a la literatura y educación en
+                natación a través de numerosos artículos y publicaciones.
+                También está involucrado en la creación de materiales
+                educativos, como un manual del entrenador de natación con
+                enfoque en el alto rendimiento y cursos de capacitación para
+                instructores y entrenadores.
+              </p>
+              <br />
+              <p>
+                En cuanto a sus atributos personales, se destaca por su
+                sinceridad, lealtad, autoridad, organización, responsabilidad,
+                optimismo, exigencia, colaboración y educación. Estos atributos
+                han sido fundamentales en su éxito profesional y han contribuido
+                a su impacto positivo en el mundo de la natación. Actualmente,
+                Valiente Gómez continúa trabajando de forma independiente,
+                ofreciendo asesorías y cursos de capacitación en el campo de la
+                natación.
+              </p>
             </div>
           </div>
+        </section>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] ">
+          <div class="border-b-2 border-indigo-500 px-6 py-3 ml-4 mr-4 text-center text-2xl text-indigo-950">
+            Estudios medios y superiores realizados:
+          </div>
+          <ul className="p-6">
+            <li>
+              ⦁ Curso de formación de entrenadores en el Instituto Superior de
+              Cultura Física de La Habana.
+            </li>
+            <li>
+              ⦁ Licenciatura en el Instituto Superior de Cultura Física de La
+              Habana, Cuba.
+            </li>
+            <li>
+              ⦁ Master en Natación en el Instituto Superior Alemán de Cultura
+              Física, ee Leipzig, antigua RDA
+            </li>
+          </ul>
         </div>
-      </nav>
+        <div class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] ">
+          <div class="border-b-2 border-indigo-500 px-6 py-3 ml-4 mr-4 text-center text-2xl text-indigo-950">
+            Cursos, Seminarios y Conferencias Impartidos:
+          </div>
+          <ul className="p-6">
+            <li>
+              ⦁ Cursos de Capacitación de entrenadores en Brasil, Argentina,
+              Chile, Bolivia, Perú, Paraguay, Colombia, Panamá, Nicaragua, Costa
+              Rica, Guatemala, México.
+            </li>
+            <li>
+              ⦁ Ponente en Congresos Técnicos Internacionales en España, Brasil,
+              Argentina, Panamá, Puerto Rico, México y otros países.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mt-10">
+        <div class="border-b-2 border-indigo-500 px-6 py-3 ml-4 mr-4 text-center text-2xl text-indigo-950">
+          Cursos y postgrados recibidos
+        </div>
+        <ul className="p-6">
+          <li>
+            ⦁ Teoría y metodología del entrenamiento. La selección de talentos.
+            Computación. Estructura y Planificación del Entrenamiento Deportivo.
+            Historia del Deporte y la Cultura Física.
+          </li>
+        </ul>
+      </div>
+      <div className="grid grid-cols-2 gap-4 mt-10">
+        <ol class="border-l-2 border-primary dark:border-primary-500">
+          <h1 className="text-center pb-6 text-2xl text-black">Trayectoria Laboral:</h1>
+          <li>
+            <div class="flex-start flex items-center">
+              <div class="-ml-[9px] -mt-2 mr-3 flex h-4 w-4 items-center justify-center rounded-full bg-primary dark:bg-primary-500"></div>
+            </div>
+            <div class="ml-6">
+              <p class="mb-4 mt-2 text-neutral-600 dark:text-neutral-300 p-4">
+                Inició como entrenador de Enseñanza. Continuó domo entrenador de
+                equipos infantiles y juveniles. Entrenador de la Selección
+                Nacional de Cuba.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="flex-start flex items-center">
+              <div class="-ml-[9px] -mt-2 mr-3 flex h-4 w-4 items-center justify-center rounded-full bg-primary dark:bg-primary-500"></div>
+            </div>
+            <div class="ml-6 ">
+              <p class="mb-4 mt-2 text-neutral-600 dark:text-neutral-200 p-4">
+                Promovido a Director Técnico Nacional en Cuba desde 1978 y hasta
+                2000. Entre 2001 y hasta 2017 fue Director Técnico de la
+                Federación Colombiana de Natación, Desde septiembre de 2018 y
+                hasta diciembre de 2022 ejerció como Gerente de Equipos Acuática
+                Nelson Vargas, en México.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="flex-start flex items-center">
+              <div class="-ml-[9px] -mt-2 mr-3 flex h-3 w-4 items-center justify-center rounded-full bg-primary dark:bg-primary-500"></div>
+
+            </div>
+            <div class=" ml-6 ">
+              <p class="mb-4 mt-2 text-neutral-600 dark:text-neutral-200 p-4">
+                Hoy trabaja como independiente en asesorías y cursos de
+                capacitación.
+              </p>
+            </div>
+          </li>
+        </ol>
+        <div class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mt-10">
+        <div class="border-b-2 border-indigo-500 px-6 py-3 ml-4 mr-4 text-center text-2xl text-indigo-950">
+        Actividades en Organismos Deportivos Internacionales:
+        </div>
+        <ul className="p-6">
+          <li>
+          ⦁	Directivo del Comité Técnico y Comité Ejecutivo de la Confederación Centroamericana y del Caribe  desde 1986 y hasta 2006.
+          </li>
+          <li>
+          ⦁	Presidente del Comité Técnico de Natación de la PANAM ACUATICS entre 1995 y 1999. Miembro de su Comité Ejecutivo entre 1999 y 2007.
+          </li>
+        </ul>
+      </div>
+      </div>
     </>
   );
 }

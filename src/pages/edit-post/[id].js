@@ -125,10 +125,10 @@ function EditPost() {
         Actualiza la imagen
       </button>
       <button
-        className="mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg"
+        className="mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg ml-4"
         onClick={updateCurrentPost}
       >
-        Update Post
+        Actualiza el Post
       </button>
     </>
   );

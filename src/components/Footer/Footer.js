@@ -13,8 +13,8 @@ function Footer() {
               src={svgLogo}
               className="h-16 mr-3"
               alt="svg-swim logo"
-              width={85}
-              height={85}
+              width={82}
+              height={70}
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               SVG-NATACION
