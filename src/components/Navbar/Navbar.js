@@ -1,5 +1,5 @@
 import { Link } from "@aws-amplify/ui-react";
-import svgLogo from "../../../public/svg-final.png";
+import svgLogo from "../../../public/final.png";
 import Image from "next/image";
 import { Auth, Hub } from "aws-amplify";
 import { useEffect, useState } from "react";
@@ -177,7 +177,7 @@ function Navbar() {
           >
             <Image
               src={svgLogo}
-              style={{ height: 70, width: 82 }}
+              style={{ height: 70, width: 130 }}
               alt="TE Logo"
               loading="lazy"
             />

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import svgLogo from "../../../public/svg-final.png";
+import svgLogo from "../../../public/final.png";
+import acuatica from '../../../public/acuaticaBlanco.png'
 
 function Footer() {
   return (
@@ -13,13 +14,22 @@ function Footer() {
               src={svgLogo}
               className="h-16 mr-3"
               alt="svg-swim logo"
-              width={82}
+              width={120}
               height={70}
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               SVG-NATACION
             </span>
           </a>
+          <Link href="https://anv.mx" target="_blank">
+          <Image 
+          src={acuatica}
+          className="h-16 mr-3"
+          alt="acuatica-logo"
+          width={220}
+          height={180}
+          />
+          </Link>
           <ul className="flex flex-wrap items-center mb-6 pt-2 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
               <Link href="/about" className="mr-4 hover:underline md:mr-6 ">
