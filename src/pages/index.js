@@ -52,7 +52,7 @@ function Home() {
 
   <div class="grid gap-x-6 lg:grid-cols-3 lg:gap-x-12">
     {posts.map((post, index)=>(
-      <div class="mb-6 block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 lg:mb-0" data-te-ripple-init data-te-ripple-color="light">
+      <div class="mb-6 block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 lg:mb-0" data-te-ripple-init data-te-ripple-color="light" key={index}>
       <div class="relative overflow-hidden bg-cover bg-no-repeat">
         <img src={post.image} class="w-full rounded-t-lg" />
         

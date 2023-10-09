@@ -56,7 +56,7 @@ function Footer() {
             className="ml-3 "
             target="_blank"
           >
-            <img src="https://img.buymeacoffee.com/button-api/?text= &emoji=&slug=nieladverse&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
+            <img src="https://img.buymeacoffee.com/button-api/?text= &emoji=&slug=nieladverse&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" alt="coffe-me"/>
           </Link>
         </span>
       </div>

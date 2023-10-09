@@ -140,7 +140,7 @@ if (admin === undefined) {
         <option value="Progresos">Progresos</option>
         <option value="Pronosticos">Pronosticos</option>
       </select>
-      {image && <img src={URL.createObjectURL(image)} className="my-4" />}
+      {image && <img src={URL.createObjectURL(image)} className="my-4" alt="create-image"/>}
       <SimpleMDE
         value={post.description}
         onChange={(value) => setPost({ ...post, description: value })}
