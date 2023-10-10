@@ -66,9 +66,9 @@ function Navbar() {
               className="h-7 w-7"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               />
             </svg>
           </span>
@@ -79,9 +79,9 @@ function Navbar() {
           id="navbarSupportedContent1"
           data-te-collapse-item
         >
-          <a
+          <Link
             className="mb-4 ml-2 mr-5 mt-3 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 md:mb-0 md:mt-0"
-            href="#"
+            href="/"
           >
             <Image
               src={svgLogo}
@@ -89,7 +89,7 @@ function Navbar() {
               alt="TE Logo"
               loading="lazy"
             />
-          </a>
+          </Link>
 
           <h1 className="text-3xl text-white">SVG Natacion</h1>
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4  bg-indigo-950 md:flex-row md:space-x-8 md:mt-0 md:border-0">

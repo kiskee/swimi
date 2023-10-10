@@ -100,13 +100,13 @@ function SinglePostPage({ post }) {
 
   return (
     <>
-      <h1 className="text-5xl mt-4 mb-4 font-semibold tracing-wide">
+      <h1 className="text-5xl mt-8 mb-4 font-semibold tracing-wide text-center">
         {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
       </h1>
       {coverImage && <img src={coverImage} className="mt4" />}
       <p className="text-sm font-light my-4">Por: Sergio Valiente Gomez</p>
       <div className="mt-8">
-        <ReactMarkDown children={post.description} />
+        <ReactMarkDown>{post.description}</ReactMarkDown> 
       </div>
       <div>
         {post.Comments.items.length > 0 &&

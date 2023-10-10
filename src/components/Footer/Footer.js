@@ -7,8 +7,8 @@ function Footer() {
   return (
     <footer className="shadow bg-indigo-950">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div className="flex flex-wrap items-center justify-between">
-          <a href="#" className="flex items-center mb-4 sm:mb-0">
+        <div className="flex flex-wrap items-center lg:justify-between  md:flex-col sm:flex-col ss:flex-col">
+          <a href="#" className="flex items-center mb-4 sm:mb-0 ss:flex-col">
             <Image
               priority={true}
               src={svgLogo}
@@ -59,6 +59,7 @@ function Footer() {
             <img
               src="https://img.buymeacoffee.com/button-api/?text= &emoji=&slug=nieladverse&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"
               alt="coffe-me"
+              className="h-8"
             />
           </Link>
         </span>
