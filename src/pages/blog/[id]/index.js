@@ -1,7 +1,7 @@
 import { createComments, deleteTodo } from "@/graphql/mutations";
 import { getTodo, listTodos } from "@/graphql/queries";
 import { API, Storage } from "aws-amplify";
-import { Auth } from "aws-amplify";
+import { Auth, Hub } from "aws-amplify";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
@@ -12,6 +12,8 @@ const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
 // import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import Link from "next/link";
+import { Authenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
 
 const intialState = { description: "" };
 
@@ -22,8 +24,8 @@ function SinglePostPage({ post }) {
   const router = useRouter();
   const [user, setuser] = useState(null);
   const [admin, setAdmin] = useState(null);
-  //const { message } = comment;
-  console.log(post);
+  const [signedInUser, setSignedInUser] = useState(false);
+
   useEffect(() => {
     updateCoverImage();
     const init = async () => {
@@ -31,24 +33,28 @@ function SinglePostPage({ post }) {
       initTE({ Modal, Ripple });
     };
     init();
-    async function getUser() {
+    async function authListener() {
+      Hub.listen("auth", (data) => {
+        switch (data.payload.event) {
+          case "signIn":
+            return setSignedInUser(true);
+          case "signOut":
+            setSignedInUser(false);
+            setAdmin("");
+            break;
+        }
+      });
       try {
+        await Auth.currentAuthenticatedUser();
+        setSignedInUser(true);
         const resp = await Auth.currentSession();
-        if (resp === "No current user") {
-          return;
-        }
-        const userGroups = resp?.idToken.payload["cognito:groups"];
-        if (userGroups && userGroups.length > 0) {
-          setAdmin(userGroups[0]);
-        }
+        const currentAdmin = resp?.idToken.payload["cognito:groups"]?.[0];
+        setAdmin(currentAdmin);
         setuser(resp.idToken.payload.name);
-      } catch (error) {
-        console.error("Error al obtener la sesión:", error);
-      }
+      } catch (err) {}
     }
-
-    getUser();
-  }, []);
+    authListener();
+  }, [signedInUser]);
 
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -100,8 +106,8 @@ function SinglePostPage({ post }) {
     });
     router.push("/blog");
   }
-
-  console.log(admin)
+  // sorting the comments
+  post.Comments.items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
   return (
     <>
       <h1 className="text-5xl mt-4 mb-4 font-semibold tracing-wide">
@@ -113,6 +119,7 @@ function SinglePostPage({ post }) {
         <ReactMarkDown children={post.description} />
       </div>
       <div>
+       
         {post.Comments.items.length > 0 &&
           post.Comments.items.map((comment, index) => (
             <div
@@ -148,27 +155,27 @@ function SinglePostPage({ post }) {
               Escribe un comentario
             </button>
             {admin && (
-            <>
-            <button
-              type="button"
-              class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] ml-4"
-              data-te-toggle="modal"
-              data-te-target="#exampleModal"
-              data-te-ripple-init
-              data-te-ripple-color="light"
-            >
-              Borrar Post
-            </button>
-            <Link
-              href={`/edit-post/${post.id}`}
-              type="button"
-              class="inline-block rounded bg-warning px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] ml-4"
-            >
-              Actualizar Post
-            </Link>
-            </>
+              <>
+                <button
+                  type="button"
+                  class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] ml-4"
+                  data-te-toggle="modal"
+                  data-te-target="#exampleModal"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                >
+                  Borrar Post
+                </button>
+                <Link
+                  href={`/edit-post/${post.id}`}
+                  type="button"
+                  class="inline-block rounded bg-warning px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] ml-4"
+                >
+                  Actualizar Post
+                </Link>
+              </>
             )}
-            
+
             <div
               data-te-modal-init
               class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
@@ -246,12 +253,21 @@ function SinglePostPage({ post }) {
             </div>
           </>
         ) : (
-          <button
-            className="mb-4 bg-green-600 
-      text-white font-semibold px-8 py-2 rounded-lg mt-8"
-          >
-            Ingresa para Comentar
-          </button>
+          <>
+            <h1 className="text-center text-indigo-700 text-3xl mt-8 ">
+              Logeate o Registrate para comentar este Post
+            </h1>
+            <Authenticator className="mt-4">
+              <button
+                type="button"
+                className="mb-4 bg-green-600 
+        text-white font-semibold px-8 py-2 rounded-lg mt-8"
+                onClick={toggle}
+              >
+                Escribe un comentario
+              </button>
+            </Authenticator>
+          </>
         )}
 
         {

@@ -24,7 +24,7 @@ function Navbar() {
   async function logOut() {
     try {
       const outUser = await Auth.signOut();
-      router.push(`/`);
+      router.reload();
     } catch (error) {}
   }
   /*
