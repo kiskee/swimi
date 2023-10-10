@@ -246,7 +246,7 @@ function SinglePostPage({ post }) {
             <h1 className="text-center text-indigo-700 text-3xl mt-8 ">
               Logeate o Registrate para comentar este Post
             </h1>
-            <Authenticator className="mt-4">
+            <Authenticator className="mt-4" signUpAttributes={["birthdate", "email", "gender", "name"]}>
               <button
                 type="button"
                 className="mb-4 bg-green-600 

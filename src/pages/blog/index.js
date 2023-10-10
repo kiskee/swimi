@@ -48,6 +48,10 @@ function BlogPage() {
     setPosts(postWithImages);
   }
 
+  posts.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
+
   return (
     <>
       <div class="container mt-4 mx-auto md:px-6">
