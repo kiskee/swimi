@@ -54,8 +54,7 @@ function CreatePost() {
 
   async function createNewPost() {
     if (!name || !description) return;
-    //const id = uuid();
-    //post.id = id;
+
     if (image) {
       const filename = `${image.name}_${uuid()}`;
       post.image = filename;
@@ -82,103 +81,101 @@ function CreatePost() {
     setImage(fileUploaded);
   }
 
-  /*
-  async function getUser() {
-    try {
-      const resp = await Auth.currentSession();
-      if (resp == "No current user") return;
-      setAdmin(resp?.idToken.payload["cognito:groups"]?.[0]);
-    } catch (error) {}
-  }
-  
-
-  if (admin != "admin") {
-    router.push("/blog");
+  if (admin === undefined) {
     return null;
   }
-*/
-if (admin === undefined) {
-  return null;
-}
   return (
     <>
-    {admin ? (<>
-      <h1 className="text-4xl">Nuevo Post </h1>
-      <input
-        onChange={onChange}
-        name="name"
-        placeholder="Titulo"
-        value={post.name}
-        className="border-b pb-2 text-lg my-4
+      {admin ? (
+        <>
+          <h1 className="text-4xl">Nuevo Post </h1>
+          <input
+            onChange={onChange}
+            name="name"
+            placeholder="Titulo"
+            value={post.name}
+            className="border-b pb-2 text-lg my-4
          focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
-      />
-      <label className="leading-loose text-2xl">
-        Selecciona una categoria:
-      </label>
-      <select
-        id="countries"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-6"
-        onChange={onChange}
-        name="category"
-      >
-        <option defaultValue>General</option>
-        <option value="Metodologia Enseñanza">Metodologia Enseñanza</option>
-        <option value="Enseñanza por Niveles">Enseñanza por Niveles</option>
-        <option value="Programas de Entrenamiento">
-          Programas de Entrenamiento
-        </option>
-        <option value="Entrenamiento Infantiles">
-          Entrenamiento Infantiles
-        </option>
-        <option value="Entrenamiento Juveniles">Entrenamiento Juveniles</option>
-        <option value="Metodología del Entrenamiento">
-          Metodología del Entrenamiento
-        </option>
-        <option value="Desarrollo de Capacidades">
-          Desarrollo de Capacidades
-        </option>
-        <option value="Progresos">Progresos</option>
-        <option value="Pronosticos">Pronosticos</option>
-      </select>
-      {image && <img src={URL.createObjectURL(image)} className="my-4" alt="create-image"/>}
-      <SimpleMDE
-        value={post.description}
-        onChange={(value) => setPost({ ...post, description: value })}
-      />
-      <input
-        type="file"
-        ref={imageFileInput}
-        className="absolute w-0 h-0"
-        onChange={handleChange}
-      />
-      <button
-        type="button"
-        className="bg-green-600 text-white 
+          />
+          <label className="leading-loose text-2xl">
+            Selecciona una categoria:
+          </label>
+          <select
+            id="countries"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-6"
+            onChange={onChange}
+            name="category"
+          >
+            <option defaultValue>General</option>
+            <option value="Metodologia Enseñanza">Metodologia Enseñanza</option>
+            <option value="Enseñanza por Niveles">Enseñanza por Niveles</option>
+            <option value="Programas de Entrenamiento">
+              Programas de Entrenamiento
+            </option>
+            <option value="Entrenamiento Infantiles">
+              Entrenamiento Infantiles
+            </option>
+            <option value="Entrenamiento Juveniles">
+              Entrenamiento Juveniles
+            </option>
+            <option value="Metodología del Entrenamiento">
+              Metodología del Entrenamiento
+            </option>
+            <option value="Desarrollo de Capacidades">
+              Desarrollo de Capacidades
+            </option>
+            <option value="Progresos">Progresos</option>
+            <option value="Pronosticos">Pronosticos</option>
+          </select>
+          {image && (
+            <img
+              src={URL.createObjectURL(image)}
+              className="my-4"
+              alt="create-image"
+            />
+          )}
+          <SimpleMDE
+            value={post.description}
+            onChange={(value) => setPost({ ...post, description: value })}
+          />
+          <input
+            type="file"
+            ref={imageFileInput}
+            className="absolute w-0 h-0"
+            onChange={handleChange}
+          />
+          <button
+            type="button"
+            className="bg-green-600 text-white 
         font-semibold px-8 py-2 rounded-lg mr-2"
-        onClick={uploadImage}
-      >
-        Imagen del Post
-      </button>
-      <button
-        type="button"
-        className="mb-4 bg-blue-600 text-white 
+            onClick={uploadImage}
+          >
+            Imagen del Post
+          </button>
+          <button
+            type="button"
+            className="mb-4 bg-blue-600 text-white 
      font-semibold px-8 py-2 rounded-lg"
-        onClick={createNewPost}
-      >
-        Crear Nuevo Post
-      </button>{" "}
-    </>) : (<>
-     <p className="mt-8">No tienes permisos de administrador.</p>
-     <button
-        type="button"
-        className="mb-4 bg-blue-600 text-white 
+            onClick={createNewPost}
+          >
+            Crear Nuevo Post
+          </button>{" "}
+        </>
+      ) : (
+        <>
+          <p className="mt-8">No tienes permisos de administrador.</p>
+          <button
+            type="button"
+            className="mb-4 bg-blue-600 text-white 
      font-semibold px-8 py-2 rounded-lg"
-        onClick={()=>{router.push("/blog")}}
-      >
-        Inicio
-      </button>{" "}
-    </>)}
-      
+            onClick={() => {
+              router.push("/blog");
+            }}
+          >
+            Inicio
+          </button>{" "}
+        </>
+      )}
     </>
   );
 }

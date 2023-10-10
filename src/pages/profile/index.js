@@ -3,7 +3,6 @@ import { Auth } from "aws-amplify";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-
 function Profile() {
   const [user, setUser] = useState(null);
   const router = useRouter();
@@ -17,9 +16,9 @@ function Profile() {
   }
   //console.log(user);
 
-  async function logOut(){
+  async function logOut() {
     try {
-      const outUser = await Auth.signOut()
+      const outUser = await Auth.signOut();
       router.push(`/`);
     } catch (error) {}
   }

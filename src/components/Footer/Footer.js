@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import svgLogo from "../../../public/final.png";
-import acuatica from '../../../public/acuaticaBlanco.png'
+import acuatica from "../../../public/acuaticaBlanco.png";
 
 function Footer() {
   return (
@@ -22,13 +22,13 @@ function Footer() {
             </span>
           </a>
           <Link href="https://anv.mx" target="_blank">
-          <Image 
-          src={acuatica}
-          className="h-16 mr-3"
-          alt="acuatica-logo"
-          width={220}
-          height={180}
-          />
+            <Image
+              src={acuatica}
+              className="h-16 mr-3"
+              alt="acuatica-logo"
+              width={220}
+              height={180}
+            />
           </Link>
           <ul className="flex flex-wrap items-center mb-6 pt-2 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
@@ -56,7 +56,10 @@ function Footer() {
             className="ml-3 "
             target="_blank"
           >
-            <img src="https://img.buymeacoffee.com/button-api/?text= &emoji=&slug=nieladverse&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" alt="coffe-me"/>
+            <img
+              src="https://img.buymeacoffee.com/button-api/?text= &emoji=&slug=nieladverse&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"
+              alt="coffe-me"
+            />
           </Link>
         </span>
       </div>

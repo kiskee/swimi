@@ -7,12 +7,10 @@ import { useRouter } from "next/router";
 
 function Navbar() {
   const [signedInUser, setSignedInUser] = useState(false);
-  const [user, setuser] = useState(null);
   const [admin, setAdmin] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
-    // getUser();
     authListener();
     const init = async () => {
       const { Collapse, Dropdown, initTE } = await import("tw-elements");
@@ -27,20 +25,7 @@ function Navbar() {
       router.reload();
     } catch (error) {}
   }
-  /*
-  async function getUser() {
-    try {
-      const resp = await Auth.currentSession();
-      if (resp == "No current user") return;
-      setAdmin(resp?.idToken.payload["cognito:groups"]?.[0]);
-    } catch (error) {
-      //console.log(error);
-    }
 
-    //setuser(resp.idToken.payload.name)
-    //setAdmin(resp?.idToken.payload['cognito:groups']?.[0])
-  }
-*/
   async function authListener() {
     Hub.listen("auth", (data) => {
       switch (data.payload.event) {
@@ -61,88 +46,11 @@ function Navbar() {
     } catch (err) {}
   }
 
-  /*
-  <nav className="bg-indigo-950 border-gray-200 sticky top-0">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link href="/" className="flex items-center">
-          <Image
-            priority={true}
-            src={svgLogo}
-            className="h-16"
-            alt="svg-swim logo"
-            height={80}
-            width={85}
-          />
-        </Link>
-        <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-          SVG Natacion{" "}
-        </span>
-        <div className="hidden w-full md:block md:w-auto">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-indigo-950 md:flex-row md:space-x-8 md:mt-0 md:border-0">
-            <li>
-              <Link
-                href="/"
-                className="block py-2 pl-3 pr-4 !text-white"
-                aria-current="page"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className="block py-2 pl-3 pr-4 !text-white"
-              >
-                Acerca
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/blog"
-                className="block py-2 pl-3 pr-4 !text-white"
-              >
-                Blog
-              </Link>
-            </li>
-            {admin == "admin" && (
-              <li>
-                <Link
-                  href="/blog/create"
-                  className="block py-2 pl-3 pr-4 rounded !text-red-500"
-                >
-                  Nuevo Post
-                </Link>
-              </li>
-            )}
-            <li>
-              <Link
-                href="/contact"
-                className="block py-2 pl-3 pr-4 !text-white"
-              >
-                Contactanos
-              </Link>
-            </li>
-            {signedInUser && (
-              <li>
-                <Link
-                  href="/profile"
-                  className="block py-2 pl-3 pr-4 !text-purple-400"
-                >
-                  Perfil
-                </Link>
-              </li>
-            )}
-          </ul>
-        </div>
-      </div>
-    </nav>
-*/
-
   return (
     <nav className="fixed top-0 flex w-full flex-wrap items-center justify-between bg-indigo-950 py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700  lg:py-4 z-40">
       <div className="flex w-full flex-wrap items-center justify-between px-3">
         <button
-          className="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
+          className="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 md:hidden"
           type="button"
           data-te-collapse-init
           data-te-target="#navbarSupportedContent1"
@@ -167,12 +75,12 @@ function Navbar() {
         </button>
 
         <div
-          className="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto"
+          className="!visible hidden flex-grow basis-[100%] items-center md:!flex md:basis-auto justify-between"
           id="navbarSupportedContent1"
           data-te-collapse-item
         >
           <a
-            className="mb-4 ml-2 mr-5 mt-3 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0"
+            className="mb-4 ml-2 mr-5 mt-3 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 md:mb-0 md:mt-0"
             href="#"
           >
             <Image
@@ -184,9 +92,6 @@ function Navbar() {
           </a>
 
           <h1 className="text-3xl text-white">SVG Natacion</h1>
-        </div>
-
-        <div className="relative flex items-center">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4  bg-indigo-950 md:flex-row md:space-x-8 md:mt-0 md:border-0">
             <li>
               <Link
@@ -207,7 +112,7 @@ function Navbar() {
                 Blog
               </Link>
             </li>
-            
+
             <li>
               <Link
                 href="/contact"
@@ -270,13 +175,13 @@ function Navbar() {
                   </li>
                   {admin == "admin" && (
                     <li>
-                    <Link
-                      href="/blog/create"
-                      className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal !text-red-500 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                    >
-                      Nuevo Post
-                    </Link>
-                  </li>
+                      <Link
+                        href="/blog/create"
+                        className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal !text-red-500 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+                      >
+                        Nuevo Post
+                      </Link>
+                    </li>
                   )}
                   <li>
                     <p
@@ -292,6 +197,8 @@ function Navbar() {
             )}
           </ul>
         </div>
+
+        <div className="relative flex items-center"></div>
       </div>
     </nav>
   );

@@ -73,7 +73,6 @@ function SinglePostPage({ post }) {
   async function createTheComment() {
     if (!comment) return;
     try {
-      //console.log(comment)
       const userToComment = user;
       comment.userName = userToComment;
 
@@ -87,18 +86,6 @@ function SinglePostPage({ post }) {
     router.push("/blog");
   }
 
-  /*
-  async function getUser() {
-    try {
-      const resp = await Auth.currentSession();
-      if (resp == "No current user") return;
-      setAdmin(resp?.idToken.payload["cognito:groups"]?.[0]);
-      setuser(resp.idToken.payload.name);
-    } catch (error) {
-      
-    }
-  }
-*/
   async function deletePost(id) {
     await API.graphql({
       query: deleteTodo,
@@ -107,7 +94,10 @@ function SinglePostPage({ post }) {
     router.push("/blog");
   }
   // sorting the comments
-  post.Comments.items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+  post.Comments.items.sort(
+    (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+  );
+
   return (
     <>
       <h1 className="text-5xl mt-4 mb-4 font-semibold tracing-wide">
@@ -119,7 +109,6 @@ function SinglePostPage({ post }) {
         <ReactMarkDown children={post.description} />
       </div>
       <div>
-       
         {post.Comments.items.length > 0 &&
           post.Comments.items.map((comment, index) => (
             <div

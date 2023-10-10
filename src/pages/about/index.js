@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import svgLogo from "../../../public/svg-final.png";
 import sergioImage from "../../../public/sergio-1.png";
 import Image from "next/image";
 
@@ -125,25 +124,23 @@ function AboutPage() {
           </li>
         </ul>
       </div>
-      
-        <div class="block rounded-lg bg-indigo-950 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mt-10">
-          <div class="border-b-2 border-indigo-500 px-6 py-3 ml-4 mr-4 text-center text-2xl text-white">
-            Actividades en Organismos Deportivos Internacionales:
-          </div>
-          <ul className="p-6 text-gray-400 text-center">
-            <li>
-              ⦁ Directivo del Comité Técnico y Comité Ejecutivo de la
-              Confederación Centroamericana y del Caribe desde 1986 y hasta
-              2006.
-            </li>
-            <li>
-              ⦁ Presidente del Comité Técnico de Natación de la PANAM ACUATICS
-              entre 1995 y 1999. Miembro de su Comité Ejecutivo entre 1999 y
-              2007.
-            </li>
-          </ul>
+
+      <div class="block rounded-lg bg-indigo-950 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mt-10">
+        <div class="border-b-2 border-indigo-500 px-6 py-3 ml-4 mr-4 text-center text-2xl text-white">
+          Actividades en Organismos Deportivos Internacionales:
         </div>
-    
+        <ul className="p-6 text-gray-400 text-center">
+          <li>
+            ⦁ Directivo del Comité Técnico y Comité Ejecutivo de la
+            Confederación Centroamericana y del Caribe desde 1986 y hasta 2006.
+          </li>
+          <li>
+            ⦁ Presidente del Comité Técnico de Natación de la PANAM ACUATICS
+            entre 1995 y 1999. Miembro de su Comité Ejecutivo entre 1999 y 2007.
+          </li>
+        </ul>
+      </div>
+
       <h1 className="text-center pb-6 text-3xl text-black mt-4">
         Trayectoria Laboral:
       </h1>
@@ -163,7 +160,7 @@ function AboutPage() {
 
         <li>
           <div class="flex-start flex items-center pt-2 md:block md:pt-0">
-          <div class="-ml-[5px] mr-3 h-[10px] w-[10px] rounded-full bg-indigo-950  md:-mt-[5px] md:ml-0 md:mr-0"></div>
+            <div class="-ml-[5px] mr-3 h-[10px] w-[10px] rounded-full bg-indigo-950  md:-mt-[5px] md:ml-0 md:mr-0"></div>
           </div>
           <div class="ml-4 mt-2 pb-5 md:ml-0">
             <p class="mb-3 text-neutral-500 dark:text-neutral-300">
@@ -178,7 +175,7 @@ function AboutPage() {
 
         <li>
           <div class="flex-start flex items-center pt-2 md:block md:pt-0">
-          <div class="-ml-[5px] mr-3 h-[10px] w-[10px] rounded-full bg-indigo-950  md:-mt-[5px] md:ml-0 md:mr-0"></div>
+            <div class="-ml-[5px] mr-3 h-[10px] w-[10px] rounded-full bg-indigo-950  md:-mt-[5px] md:ml-0 md:mr-0"></div>
           </div>
           <div class="ml-4 mt-2 pb-5 md:ml-0">
             <p class="mb-3 text-neutral-500 dark:text-neutral-300">
@@ -188,7 +185,6 @@ function AboutPage() {
           </div>
         </li>
       </ol>
-      
     </>
   );
 }
