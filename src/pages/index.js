@@ -29,6 +29,12 @@ function Home() {
 
   return (
     <>
+      <div className="bg-red-600 rounded p-4 mt-4 text-white flex justify-between sm:flex-col   ss:flex-col items-center  ">
+        <p className="text-center ">Estamos trabajando en nuestra seccion de <span className="font-bold">Cursos de Capacitacion!</span></p>
+        <Link href="/courses" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 text-center w-max sm:mt-4 ss:mt-4">
+        Leer mas
+        </Link>
+      </div>
       <div className="bg-neutral-50 py-24 px-6 text-center dark:bg-neutral-900 mt-8 rounded shadow-lg">
         <h1 className="mt-2 mb-16 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl">
           Con el AVAL de <br />
@@ -62,7 +68,7 @@ function Home() {
           <div className="grid gap-x-6 lg:grid-cols-3 lg:gap-x-12">
             {posts.map((post, index) => (
               <div
-              className="mb-6 block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 lg:mb-0"
+                className="mb-6 block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 lg:mb-0"
                 data-te-ripple-init
                 data-te-ripple-color="light"
                 key={index}

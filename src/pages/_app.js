@@ -23,7 +23,6 @@ export default function App({ Component, pageProps }) {
           key="desc"
         />
         <meta name="robots" content="all" />
-        <link rel="icon" href="../../public/favicon.ico" />
       </Head>
       <Navbar />
       <div className="py-24 px-16 bg-indigo-100">
