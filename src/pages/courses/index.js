@@ -4,8 +4,8 @@ import certificadoImg from '../../../public/certificado.jpeg'
 function CoursesPage() {
   return (
     <>
-      <div className="bg-indigo-950 py-8 px-6 text-center text-xl">
-        <h1 className="mt-2 mb-16 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl text-white">
+      <div className="bg-indigo-950 py-8 px-6 text-center text-xl pl-2">
+        <h1 className="mt-2 mb-16 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl text-white ss:text-left ss:text-xs">
           Curso de Capacitación de Instructores y Entrenadores de <br />
           <span className="text-primary">Natación</span>
         </h1>
@@ -131,7 +131,7 @@ function CoursesPage() {
       <Image src={certificadoImg} className="mt-8" height={800} width={600} alt="certificado-image"/>
       </div>
       <h1 className="text-4xl text-center mt-4 text-indigo-800 font-semibold">
-        Espera nuesto primer Modulo pronto
+        Espera nuestro primer Modulo pronto
       </h1>
     </>
   );
