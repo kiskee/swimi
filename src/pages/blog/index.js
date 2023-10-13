@@ -95,9 +95,9 @@ function BlogPage() {
               </div>
 
               <div className="mb-6 mr-auto px-3 md:mb-0 md:w-8/12 xl:w-7/12">
-                <div className="flex justify-between">
+                <div className="flex justify-between sm:flex-col sm:items-center ss:flex-col ss:items-center">
                   <Link href={`/blog/${post.id}`}>
-                    <h5 className="mb-3 text-xl font-bold text-white">
+                    <h5 className="mb-3 text-xl font-bold text-white mr-4">
                       {post.name}
                     </h5>
                   </Link>
