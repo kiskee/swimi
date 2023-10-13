@@ -25,14 +25,32 @@ function Home() {
       setPosts(finalPostToShow);
     }
     fetchPosts();
+    const init = async () => {
+      const { Animate, initTE } = await import("tw-elements");
+      initTE({ Animate });
+    };
+    init();
   }, []);
 
   return (
     <>
-      <div className="bg-red-600 rounded p-4 mt-4 text-white flex justify-between sm:flex-col   ss:flex-col items-center  ">
-        <p className="text-center ">Estamos trabajando en nuestra seccion de <span className="font-bold">Cursos de Capacitacion!</span></p>
-        <Link href="/courses" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 text-center w-max sm:mt-4 ss:mt-4">
-        Leer mas
+      <div
+        className="bg-red-600 rounded p-4 mt-4 text-white flex justify-between sm:flex-col   ss:flex-col items-center  "
+        data-te-animation-init
+        data-te-animation-start="onScroll"
+        data-te-animation-on-scroll="repeat"
+        data-te-animation-reset="true"
+        data-te-animation="[fade-in-left_1s_ease-in-out]"
+      >
+        <p className="text-center ">
+          Estamos trabajando en nuestra seccion de{" "}
+          <span className="font-bold">Cursos de Capacitacion!</span>
+        </p>
+        <Link
+          href="/courses"
+          className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 text-center w-max sm:mt-4 ss:mt-4"
+        >
+          Leer mas
         </Link>
       </div>
       <div className="bg-neutral-50 py-24 px-6 text-center dark:bg-neutral-900 mt-8 rounded shadow-lg">
@@ -46,9 +64,44 @@ function Home() {
           data-te-ripple-color="light"
           href="/profile"
           role="button"
+          data-te-animation-init
+  data-te-animation-start="onHover"
+  data-te-animation-reset="true"
+  data-te-animation="[jiggle_0.5s]"
         >
-          Empecemos
+          <div className="flex justify-center">
+            <p>
+            Empecemos
+            </p>
+            <svg
+            fill="#ffffff"
+            width="30px"
+            height="30px"
+            viewBox="-3.36 -3.36 30.72 30.72"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="#ffffff"
+            stroke-width="0.336"
+            transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"
+            className="-mt-1 pl-2"
+
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke="#517fdb"
+              stroke-width="0.24000000000000005"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path d="M5.3,11.214A6.791,6.791,0,0,0,10.792,22h2.416A6.791,6.791,0,0,0,18.7,11.214L12,2Zm5.946,8.036a5.24,5.24,0,0,1-4.631-2.779,1,1,0,1,1,1.766-.942,3.239,3.239,0,0,0,2.865,1.721,1,1,0,0,1,0,2Z"></path>
+            </g>
+          </svg>
+          </div>
+          
+          
         </Link>
+      
         <Link
           className="inline-block rounded px-12 pt-4 pb-3.5 text-sm font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 dark:hover:bg-neutral-800 dark:hover:bg-opacity-60"
           data-te-ripple-init

@@ -5,8 +5,8 @@ import Image from "next/image";
 function AboutPage() {
   useEffect(() => {
     const init = async () => {
-      const { Collapse, Dropdown, initTE } = await import("tw-elements");
-      initTE({ Collapse, Dropdown });
+      const { Collapse, Dropdown, Animate, initTE } = await import("tw-elements");
+      initTE({ Collapse, Dropdown, Animate });
     };
     init();
   }, []);
@@ -16,7 +16,13 @@ function AboutPage() {
       <div className="container mt-24 mx-auto md:px-6">
         <section className="mb-16">
           <div className="flex flex-wrap">
-            <div className="w-full shrink-0 grow-0 basis-auto md:w-2/12 lg:w-3/12">
+            <div className="w-full shrink-0 grow-0 basis-auto md:w-2/12 lg:w-3/12"
+            data-te-animation-init
+            data-te-animation-start="onScroll"
+            data-te-animation-on-scroll="repeat"
+            data-te-animation-reset="true"
+            data-te-animation="[fade-in-left_1s_ease-in-out]"
+            >
               <Image
                 src={sergioImage}
                 className="mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20"

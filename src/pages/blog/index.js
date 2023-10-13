@@ -3,13 +3,14 @@ import { API, Storage, graphqlOperation } from "aws-amplify";
 import Link from "next/link";
 import { listTodos } from "@/graphql/queries";
 import { newOnCreateTodo } from "@/graphql/subscriptions";
-import svgPhoto from "../../../public/sergio-1.png";
-import Image from "next/image";
 import ReactMarkDown from "react-markdown";
+import { Auth } from "aws-amplify";
+import LikesBar from "@/components/Likes/Likes";
 
 function BlogPage() {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState([]);
+  const [user, setUser] = useState(null);
 
   let subOncreate;
 
@@ -32,6 +33,24 @@ function BlogPage() {
     fetchPosts();
   }, [post]);
 
+  useEffect(() => {
+    async function getUser() {
+      try {
+        const resp = await Auth.currentAuthenticatedUser();
+        //console.log(user)
+        if (resp === "No current user") {
+          // Si no hay usuario, puedes manejarlo aquí, por ejemplo, redirigir a la página de inicio de sesión.
+
+          return;
+        }
+        setUser(resp.attributes);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getUser();
+  }, []);
+
   async function fetchPosts() {
     const postsData = await API.graphql({
       query: listTodos,
@@ -48,10 +67,11 @@ function BlogPage() {
     setPosts(postWithImages);
   }
 
-  posts.sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  );
-
+  posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  console.log(user);
+  /**
+    
+   */
   return (
     <>
       <div class="container mt-4 mx-auto md:px-6">
@@ -79,9 +99,16 @@ function BlogPage() {
               </div>
 
               <div class="mb-6 mr-auto px-3 md:mb-0 md:w-8/12 xl:w-7/12">
-                <Link href={`/blog/${post.id}`}>
-                  <h5 class="mb-3 text-xl font-bold text-white">{post.name}</h5>
-                </Link>
+                {user ? (
+                  <LikesBar post={post} userName={user.name} />
+                ) : (
+                  <Link href={`/blog/${post.id}`}>
+                    <h5 class="mb-3 text-xl font-bold text-white">
+                      {post.name}
+                    </h5>
+                  </Link>
+                )}
+
                 <div class="mb-3 flex items-center justify-center text-sm font-medium text-green-500 dark:text-danger-500 md:justify-start">
                   {post.category}
                 </div>

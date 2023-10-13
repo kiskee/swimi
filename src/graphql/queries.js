@@ -217,6 +217,13 @@ export const listTodos = /* GraphQL */ `
             createdAt
           }
         }
+        Likes {
+          items {
+            createdAt
+            id
+            userName
+          }
+        }
         __typename
       }
       nextToken
