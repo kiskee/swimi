@@ -184,8 +184,11 @@ export const getTodo = /* GraphQL */ `
         }
       }
       Likes {
-        nextToken
-        __typename
+        items {
+          createdAt
+          id
+          userName
+        }
       }
       category
       createdAt

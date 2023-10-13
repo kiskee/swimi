@@ -158,6 +158,8 @@ function Home() {
                     Leer Mas
                   </Link>
                 </div>
+                <p className="mt-4">Likes: {post.Likes.items.length}</p>
+                  <p className="mt-2">Comentarios: {post.Comments.items.length}</p>
               </div>
             ))}
           </div>
