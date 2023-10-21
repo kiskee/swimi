@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { API, Storage } from "aws-amplify";
 import ReactMarkDown from "react-markdown";
 import Link from "next/link";
+import nivel1Img from "../../public/nivel1.png";
+import Image from "next/image";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -31,6 +33,8 @@ function Home() {
     };
     init();
   }, []);
+
+  console.log(process.env.PUB_KI)
 
   return (
     <>
@@ -65,43 +69,38 @@ function Home() {
           href="/profile"
           role="button"
           data-te-animation-init
-  data-te-animation-start="onHover"
-  data-te-animation-reset="true"
-  data-te-animation="[jiggle_0.5s]"
+          data-te-animation-start="onHover"
+          data-te-animation-reset="true"
+          data-te-animation="[jiggle_0.5s]"
         >
           <div className="flex justify-center">
-            <p>
-            Empecemos
-            </p>
+            <p>Empecemos</p>
             <svg
-            fill="#ffffff"
-            width="30px"
-            height="30px"
-            viewBox="-3.36 -3.36 30.72 30.72"
-            xmlns="http://www.w3.org/2000/svg"
-            stroke="#ffffff"
-            stroke-width="0.336"
-            transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"
-            className="-mt-1 pl-2"
-
-          >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke="#517fdb"
-              stroke-width="0.24000000000000005"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              <path d="M5.3,11.214A6.791,6.791,0,0,0,10.792,22h2.416A6.791,6.791,0,0,0,18.7,11.214L12,2Zm5.946,8.036a5.24,5.24,0,0,1-4.631-2.779,1,1,0,1,1,1.766-.942,3.239,3.239,0,0,0,2.865,1.721,1,1,0,0,1,0,2Z"></path>
-            </g>
-          </svg>
+              fill="#ffffff"
+              width="30px"
+              height="30px"
+              viewBox="-3.36 -3.36 30.72 30.72"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="#ffffff"
+              stroke-width="0.336"
+              transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"
+              className="-mt-1 pl-2"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke="#517fdb"
+                stroke-width="0.24000000000000005"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path d="M5.3,11.214A6.791,6.791,0,0,0,10.792,22h2.416A6.791,6.791,0,0,0,18.7,11.214L12,2Zm5.946,8.036a5.24,5.24,0,0,1-4.631-2.779,1,1,0,1,1,1.766-.942,3.239,3.239,0,0,0,2.865,1.721,1,1,0,0,1,0,2Z"></path>
+              </g>
+            </svg>
           </div>
-          
-          
         </Link>
-      
+
         <Link
           className="inline-block rounded px-12 pt-4 pb-3.5 text-sm font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 dark:hover:bg-neutral-800 dark:hover:bg-opacity-60"
           data-te-ripple-init
@@ -112,6 +111,50 @@ function Home() {
           Conoceme
         </Link>
       </div>
+      <section class="mt-4" id="levelOne">
+        <div class="block rounded-lg bg-indigo-950 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] ">
+          <div class="flex flex-wrap items-center">
+            <div class="block w-full shrink-0 grow-0 basis-auto lg:flex lg:w-6/12 xl:w-4/12">
+              <Image
+                src={nivel1Img}
+                alt="Trendy Pants and Shoes"
+                class="w-full rounded-lg "
+              />
+            </div>
+            <div class="w-full shrink-0 grow-0 basis-auto lg:w-6/12 xl:w-8/12">
+              <div class="px-6 py-12 md:px-12">
+                <h2 class="mb-6 pb-2 text-6xl font-bold text-center text-white">
+                  Nivel I
+                </h2>
+                <p class="mb-6 pb-2 text-white dark:text-neutral-300">
+                  Enseñar a nadar supone la aplicación de una metodología que,
+                  partiendo de criterios pedagógicos, se realiza
+                  progresivamente, de lo simple a lo complejo, comenzando por lo
+                  que denominamos “Formación Básica”, que consiste en el proceso
+                  de adaptación de los niños al agua y a familiarizarlos con el
+                  nuevo medio, creando las condiciones de seguridad y
+                  disposición necesarias para iniciar seguidamente la enseñanza
+                  de las técnicas de nado en libre y espalda, pecho y mariposa,
+                  además de las correspondientes vueltas y partidas, en la
+                  medida que avance el programa concebido.
+                </p>
+                
+                <div className="flex justify-center gap-4">
+                  <Link
+                    href={"/courses"}
+                    class="inline-block rounded bg-primary px-12 pt-3.5 pb-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                  >
+                    Ver Informacion
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="container my-8 mx-auto md:px-6">
         <section className="text-center lg:text-left">
           <h2 className="mb-12 text-center text-3xl font-bold">
@@ -158,8 +201,10 @@ function Home() {
                     Leer Mas
                   </Link>
                 </div>
-                <p className="mt-4">Likes: {post.Likes.items.length}</p>
-                  <p className="mt-2">Comentarios: {post.Comments.items.length}</p>
+                <p className="mt-4 p-2">Likes: {post.Likes.items.length}</p>
+                <p className="mt-2 p-2">
+                  Comentarios: {post.Comments.items.length}
+                </p>
               </div>
             ))}
           </div>
