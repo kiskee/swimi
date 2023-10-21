@@ -1,6 +1,5 @@
 
-const PUB_KI = 'pub_prod_bqUNrFT1SdLmur1cUI72ZiF7ZvMngS0N'
-const INT_KI = 'prod_integrity_vFbeHXmJJAHFJOd3tqfwgySrbeHqXivc'
+const INT_KI = 'test_integrity_mmbDb6m4PdxFSbxd00HW8YddQxo3zYT4'
 import { v4 as uuidv4 } from 'uuid';
 
 export default async function handler(req, res) {
@@ -34,7 +33,7 @@ export default async function handler(req, res) {
     const data = {
       mensaje: hashHex,
       reference: unicRef,
-      ki: PUB_KI,
+      ki: process.env.PUB_KI,
     };
   
     // Envía la respuesta como JSON
