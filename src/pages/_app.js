@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <title>SVG-Natacion</title>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="description"
@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }) {
       <div className="py-24 px-16 bg-indigo-100">
         <Component {...pageProps} />
       </div>
-      <Footer />
+      <Footer className="z-40"/>
     </>
   );
 }
