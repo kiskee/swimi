@@ -1,5 +1,3 @@
-//const PUB_KI = "pub_test_OMwe3EeWi3IcAeKMUajr1GDxKL07VaqQ"
-const INT_KI = "test_integrity_mmbDb6m4PdxFSbxd00HW8YddQxo3zYT4";
 import { v4 as uuidv4 } from "uuid";
 
 export default async function handler(req, res) {
@@ -13,7 +11,7 @@ export default async function handler(req, res) {
   const tenMinutesLater = new Date(currentDate.getTime() + 10 * 60 * 1000);
   const formattedDate = tenMinutesLater.toISOString();
 
-  var cadenaConcatenada = `${unicRef}${value}${currency}${INT_KI}`;
+  var cadenaConcatenada = `${unicRef}${value}${currency}${process.env.INT_KI}`;
   console.log(cadenaConcatenada);
   //Ejemplo
   const encondedText = new TextEncoder().encode(cadenaConcatenada);
@@ -26,7 +24,7 @@ export default async function handler(req, res) {
   const data = {
     mensaje: hashHex,
     reference: unicRef,
-    ki: process.env.PUB_KI,
+    ki: process.env.PUB_KI, // Remover cuando vaya a prod y cambiar las variables de entorno
   };
 
   // Envía la respuesta como JSON
