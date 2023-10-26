@@ -1,17 +1,17 @@
-type Candidate @model @auth(rules: [{allow: public}]) {
+type Candidate @model @auth(rules: [{ allow: public }]) {
   id: ID!
   name: String
   email: String
   message: String
 }
 
-type Likes @model @auth(rules: [{allow: public}]) {
+type Likes @model @auth(rules: [{ allow: public }]) {
   id: ID!
   userName: String
   todoID: ID! @index(name: "byTodo")
 }
 
-type Comments @model @auth(rules: [{allow: public}]) {
+type Comments @model @auth(rules: [{ allow: public }]) {
   id: ID!
   todoID: ID! @index(name: "byTodo")
   description: String
@@ -19,7 +19,7 @@ type Comments @model @auth(rules: [{allow: public}]) {
   userName: String
 }
 
-type Todo @model @auth(rules: [{allow: public}]) {
+type Todo @model @auth(rules: [{ allow: public }]) {
   id: ID!
   name: String!
   description: String
@@ -28,7 +28,40 @@ type Todo @model @auth(rules: [{allow: public}]) {
   Likes: [Likes] @hasMany(indexName: "byTodo", fields: ["id"])
   category: String
 }
- 
- type Subscription {
+
+type Subscription {
   newOnCreateTodo: Todo @aws_subscribe(mutations: ["createTodo"])
- }
+}
+
+type ModuleOne @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  reference: String!
+  paymentId: String!
+  paymentMethod: String
+  currency: String
+  transactionId: String
+  status: String!
+  statusMessage: String
+  createDate: String
+  endDate: String
+  userName: String
+  userEmail: String
+  userPoolId: String
+}
+
+type Transaction @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  transactionId: String!
+  checksum: String!
+  amountInCents: Int
+  reference: String
+  customerEmail: String
+  currency: String
+  paymentMethodType: String
+  redirectUrl: String
+  status: String
+  event: String
+  environment: String
+  timestamp: Int
+  sentAt: String
+}
