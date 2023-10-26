@@ -64,4 +64,6 @@ type Transaction @model @auth(rules: [{ allow: public }]) {
   environment: String
   timestamp: Int
   sentAt: String
+  ownCheckSum: String
+  checksumParams: String
 }

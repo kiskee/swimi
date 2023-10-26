@@ -330,6 +330,8 @@ export const onCreateTransaction = /* GraphQL */ `
       environment
       timestamp
       sentAt
+      ownCheckSum
+      checksumParams
       createdAt
       updatedAt
       __typename
@@ -355,6 +357,8 @@ export const onUpdateTransaction = /* GraphQL */ `
       environment
       timestamp
       sentAt
+      ownCheckSum
+      checksumParams
       createdAt
       updatedAt
       __typename
@@ -380,6 +384,8 @@ export const onDeleteTransaction = /* GraphQL */ `
       environment
       timestamp
       sentAt
+      ownCheckSum
+      checksumParams
       createdAt
       updatedAt
       __typename

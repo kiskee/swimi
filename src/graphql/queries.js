@@ -234,7 +234,6 @@ export const listTodos = /* GraphQL */ `
     }
   }
 `;
-
 export const getModuleOne = /* GraphQL */ `
   query GetModuleOne($id: ID!) {
     getModuleOne(id: $id) {
@@ -287,7 +286,6 @@ export const listModuleOnes = /* GraphQL */ `
     }
   }
 `;
-
 export const getTransaction = /* GraphQL */ `
   query GetTransaction($id: ID!) {
     getTransaction(id: $id) {
@@ -305,6 +303,8 @@ export const getTransaction = /* GraphQL */ `
       environment
       timestamp
       sentAt
+      ownCheckSum
+      checksumParams
       createdAt
       updatedAt
       __typename
@@ -333,6 +333,8 @@ export const listTransactions = /* GraphQL */ `
         environment
         timestamp
         sentAt
+        ownCheckSum
+        checksumParams
         createdAt
         updatedAt
         __typename
