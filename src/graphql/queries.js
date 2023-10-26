@@ -234,3 +234,111 @@ export const listTodos = /* GraphQL */ `
     }
   }
 `;
+
+export const getModuleOne = /* GraphQL */ `
+  query GetModuleOne($id: ID!) {
+    getModuleOne(id: $id) {
+      id
+      reference
+      paymentId
+      paymentMethod
+      currency
+      transactionId
+      status
+      statusMessage
+      createDate
+      endDate
+      userName
+      userEmail
+      userPoolId
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listModuleOnes = /* GraphQL */ `
+  query ListModuleOnes(
+    $filter: ModelModuleOneFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listModuleOnes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        reference
+        paymentId
+        paymentMethod
+        currency
+        transactionId
+        status
+        statusMessage
+        createDate
+        endDate
+        userName
+        userEmail
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+
+export const getTransaction = /* GraphQL */ `
+  query GetTransaction($id: ID!) {
+    getTransaction(id: $id) {
+      id
+      transactionId
+      checksum
+      amountInCents
+      reference
+      customerEmail
+      currency
+      paymentMethodType
+      redirectUrl
+      status
+      event
+      environment
+      timestamp
+      sentAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listTransactions = /* GraphQL */ `
+  query ListTransactions(
+    $filter: ModelTransactionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTransactions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        transactionId
+        checksum
+        amountInCents
+        reference
+        customerEmail
+        currency
+        paymentMethodType
+        redirectUrl
+        status
+        event
+        environment
+        timestamp
+        sentAt
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;

@@ -239,3 +239,150 @@ export const onDeleteTodo = /* GraphQL */ `
     }
   }
 `;
+export const onCreateModuleOne = /* GraphQL */ `
+  subscription OnCreateModuleOne(
+    $filter: ModelSubscriptionModuleOneFilterInput
+  ) {
+    onCreateModuleOne(filter: $filter) {
+      id
+      reference
+      paymentId
+      paymentMethod
+      currency
+      transactionId
+      status
+      statusMessage
+      createDate
+      endDate
+      userName
+      userEmail
+      userPoolId
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateModuleOne = /* GraphQL */ `
+  subscription OnUpdateModuleOne(
+    $filter: ModelSubscriptionModuleOneFilterInput
+  ) {
+    onUpdateModuleOne(filter: $filter) {
+      id
+      reference
+      paymentId
+      paymentMethod
+      currency
+      transactionId
+      status
+      statusMessage
+      createDate
+      endDate
+      userName
+      userEmail
+      userPoolId
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteModuleOne = /* GraphQL */ `
+  subscription OnDeleteModuleOne(
+    $filter: ModelSubscriptionModuleOneFilterInput
+  ) {
+    onDeleteModuleOne(filter: $filter) {
+      id
+      reference
+      paymentId
+      paymentMethod
+      currency
+      transactionId
+      status
+      statusMessage
+      createDate
+      endDate
+      userName
+      userEmail
+      userPoolId
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateTransaction = /* GraphQL */ `
+  subscription OnCreateTransaction(
+    $filter: ModelSubscriptionTransactionFilterInput
+  ) {
+    onCreateTransaction(filter: $filter) {
+      id
+      transactionId
+      checksum
+      amountInCents
+      reference
+      customerEmail
+      currency
+      paymentMethodType
+      redirectUrl
+      status
+      event
+      environment
+      timestamp
+      sentAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateTransaction = /* GraphQL */ `
+  subscription OnUpdateTransaction(
+    $filter: ModelSubscriptionTransactionFilterInput
+  ) {
+    onUpdateTransaction(filter: $filter) {
+      id
+      transactionId
+      checksum
+      amountInCents
+      reference
+      customerEmail
+      currency
+      paymentMethodType
+      redirectUrl
+      status
+      event
+      environment
+      timestamp
+      sentAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteTransaction = /* GraphQL */ `
+  subscription OnDeleteTransaction(
+    $filter: ModelSubscriptionTransactionFilterInput
+  ) {
+    onDeleteTransaction(filter: $filter) {
+      id
+      transactionId
+      checksum
+      amountInCents
+      reference
+      customerEmail
+      currency
+      paymentMethodType
+      redirectUrl
+      status
+      event
+      environment
+      timestamp
+      sentAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;

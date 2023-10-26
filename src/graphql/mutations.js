@@ -247,3 +247,156 @@ export const deleteTodo = /* GraphQL */ `
     }
   }
 `;
+export const createModuleOne = /* GraphQL */ `
+  mutation CreateModuleOne(
+    $input: CreateModuleOneInput!
+    $condition: ModelModuleOneConditionInput
+  ) {
+    createModuleOne(input: $input, condition: $condition) {
+      id
+      reference
+      paymentId
+      paymentMethod
+      currency
+      transactionId
+      status
+      statusMessage
+      createDate
+      endDate
+      userName
+      userEmail
+      userPoolId
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateModuleOne = /* GraphQL */ `
+  mutation UpdateModuleOne(
+    $input: UpdateModuleOneInput!
+    $condition: ModelModuleOneConditionInput
+  ) {
+    updateModuleOne(input: $input, condition: $condition) {
+      id
+      reference
+      paymentId
+      paymentMethod
+      currency
+      transactionId
+      status
+      statusMessage
+      createDate
+      endDate
+      userName
+      userEmail
+      userPoolId
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteModuleOne = /* GraphQL */ `
+  mutation DeleteModuleOne(
+    $input: DeleteModuleOneInput!
+    $condition: ModelModuleOneConditionInput
+  ) {
+    deleteModuleOne(input: $input, condition: $condition) {
+      id
+      reference
+      paymentId
+      paymentMethod
+      currency
+      transactionId
+      status
+      statusMessage
+      createDate
+      endDate
+      userName
+      userEmail
+      userPoolId
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createTransaction = /* GraphQL */ `
+  mutation CreateTransaction(
+    $input: CreateTransactionInput!
+    $condition: ModelTransactionConditionInput
+  ) {
+    createTransaction(input: $input, condition: $condition) {
+      id
+      transactionId
+      checksum
+      amountInCents
+      reference
+      customerEmail
+      currency
+      paymentMethodType
+      redirectUrl
+      status
+      event
+      environment
+      timestamp
+      sentAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateTransaction = /* GraphQL */ `
+  mutation UpdateTransaction(
+    $input: UpdateTransactionInput!
+    $condition: ModelTransactionConditionInput
+  ) {
+    updateTransaction(input: $input, condition: $condition) {
+      id
+      transactionId
+      checksum
+      amountInCents
+      reference
+      customerEmail
+      currency
+      paymentMethodType
+      redirectUrl
+      status
+      event
+      environment
+      timestamp
+      sentAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteTransaction = /* GraphQL */ `
+  mutation DeleteTransaction(
+    $input: DeleteTransactionInput!
+    $condition: ModelTransactionConditionInput
+  ) {
+    deleteTransaction(input: $input, condition: $condition) {
+      id
+      transactionId
+      checksum
+      amountInCents
+      reference
+      customerEmail
+      currency
+      paymentMethodType
+      redirectUrl
+      status
+      event
+      environment
+      timestamp
+      sentAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
