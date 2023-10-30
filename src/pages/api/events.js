@@ -21,8 +21,7 @@ export default async function handler(req, res) {
       })
       .join(""); // Unir los valores en una sola cadena
 
-    const finalString =
-      concatenatedString + req.body.timestamp + process.env.EVE_KI;
+    const finalString = concatenatedString + req.body.timestamp + process.env.EVE_KI;
     const encondedText = new TextEncoder().encode(finalString);
     const hashBuffer = await crypto.subtle.digest("SHA-256", encondedText);
     const hashArray = Array.from(new Uint8Array(hashBuffer));

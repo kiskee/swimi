@@ -6,6 +6,8 @@ import svgLogo from "../../../public/final.png";
 import Image from "next/image";
 import "@aws-amplify/ui-react/styles.css";
 import { Link } from "@aws-amplify/ui-react";
+import { listModuleOnes } from "@/graphql/queries";
+import { API } from "aws-amplify";
 
 const components = {
   Header() {
@@ -21,6 +23,23 @@ function Profile() {
   const [signedInUser, setSignedInUser] = useState(false);
   const [user, setUser] = useState(null);
   const router = useRouter();
+  const [trasn, setTrasn] = useState(null);
+
+  const [userData, setUserData] = useState({
+    address: "",
+    birthdate: "",
+    gender: "",
+    phone_number: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   useEffect(() => {
     authListener();
   }, [signedInUser]);
@@ -39,6 +58,21 @@ function Profile() {
     try {
       const user = await Auth.currentAuthenticatedUser();
       setSignedInUser(true);
+      if (user) {
+        //console.log(user.attributes)
+        const allModuleOnes = await API.graphql({
+          query: listModuleOnes,
+        });
+        const existingTransaction =
+          allModuleOnes.data.listModuleOnes.items.filter(
+            (item) => item.userPoolId === user.attributes.sub
+          );
+        //console.log(existingTransaction[0])
+        setTrasn(existingTransaction[0]);
+      }
+      //console.log(user.attributes.sub)
+      //checkModules(user.attributes.sub)
+      //console.log(trasn)
       setUser(user);
     } catch (err) {}
   }
@@ -48,6 +82,12 @@ function Profile() {
       const outUser = await Auth.signOut();
       //router.push(`/`);
     } catch (error) {}
+  }
+
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+    const resp = await Auth.updateUserAttributes(user, userData);
+    router.reload();
   }
 
   if (!user)
@@ -68,56 +108,110 @@ function Profile() {
         <h1 className="text-center text-indigo-950 text-4xl font-bold my-4">
           Perfil
         </h1>
-        <div className="grid grid-flow-col justify-stretch">
-          <Link
-            class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] ml-4 text-center"
-            href="/"
-          >
-            Inicio
-          </Link>
-          <Link
-            class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] ml-4 text-center"
-            href="/blog"
-          >
-            Blog
-          </Link>
-          <Link
-            href="/about"
-            class="inline-block rounded bg-warning px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] ml-4 text-center"
-          >
-            Acerca
-          </Link>
-          <Link
-            href="/contact"
-            class="inline-block rounded bg-info px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(84,180,211,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.2),0_4px_18px_0_rgba(84,180,211,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.2),0_4px_18px_0_rgba(84,180,211,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.2),0_4px_18px_0_rgba(84,180,211,0.1)] ml-4 text-center"
-          >
-            Contacto
-          </Link>
+        <div className="flex justify-center">
+          {trasn?.status == "APPROVED" && (
+            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 font-semibold mb-2">
+              Modulo 1
+            </button>
+          )}
         </div>
-        
-        <div className="flex justify-center mt-12">
-        <div class="block max-w-[18rem] rounded-lg bg-indigo-950 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-          <div class="border-b-2 border-[#0000002d] px-6 py-3 text-white dark:text-neutral-50">
-          <h1 className="text-white text-center text-bold text-xl ">
-          Informacion Personal:
-        </h1>
+        <section className="grid grid-cols-3 gap-4">
+          <div className="bg-indigo-950">
+            <p className="text-center text-white font-semibold text-3xl pt-4 border-b pb-2">
+              Usuario
+            </p>
+            <div className="flex justify-center border mx-16 my-2 bg-white rounded">
+              <Image
+                alt="user photo"
+                src={svgLogo}
+                height={200}
+                width={200}
+                className="p-2"
+              />
+            </div>
+
+            <p className="text-center text-white font-semibold text-2xl pt-4">
+              {user.attributes.name}
+            </p>
+            <p className="text-center text-white  pt-4 ">
+              {user.attributes.email}
+            </p>
           </div>
-          <div class="p-6">
-          <h1 className="font-medium text-white my-2">
-            Username: {user.attributes.name}
-          </h1>
-          <p className="text-sm text-white mb-6">
-            Email: {user.attributes.email}
-          </p>
-          <button
-            className="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] ml-4 text-center"
-            onClick={logOut}
-          >
-            Cerrar Session
-          </button>
+
+          <div className="bg-indigo-950 col-span-2">
+            <div className="max-w-md mx-auto mt-8 p-4 border border-gray-300 rounded mb-4">
+              <h2 className="text-2xl font-semibold mb-4 text-white">
+                Actualizar informacion del usuario
+              </h2>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    name="address"
+                    value={userData.address}
+                    onChange={handleInputChange}
+                    className="w-full p-2 border border-gray-300 rounded"
+                    placeholder={user.attributes.address || "Direccion"}
+                  />
+                </div>
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    name="email"
+                    value={user.attributes.email}
+                    className="w-full p-2 border border-gray-300 rounded"
+                    placeholder={user.attributes.email}
+                  />
+                </div>
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    name="birthdate"
+                    value={userData.birthdate}
+                    onChange={handleInputChange}
+                    className="w-full p-2 border border-gray-300 rounded"
+                    placeholder={user.attributes.birthdate || "Cumpleaños"}
+                  />
+                </div>
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    name="gender"
+                    value={userData.gender}
+                    onChange={handleInputChange}
+                    className="w-full p-2 border border-gray-300 rounded"
+                    placeholder={user.attributes.gender || "Genero"}
+                  />
+                </div>
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    name="name"
+                    value={user.attributes.name}
+                    className="w-full p-2 border border-gray-300 rounded"
+                    placeholder={user.attributes.name}
+                  />
+                </div>
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    name="phone_number"
+                    value={userData.phone_number}
+                    onChange={handleInputChange}
+                    className="w-full p-2 border border-gray-300 rounded"
+                    placeholder={user.attributes.phone_number || "Telfono"}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 font-semibold"
+                >
+                  Actualizar
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
-        </div>
+        </section>
       </>
     </Authenticator>
   );
