@@ -3,7 +3,7 @@ import { createTransaction } from "@/graphql/mutations";
 import { listModuleOnes } from "@/graphql/queries";
 
 export default async function handler(req, res) {
-  try {
+  
     if (req.method === "POST") {
       // primero validamos que exita el registro en la bd con el numero de trasaccion
     
@@ -74,13 +74,12 @@ export default async function handler(req, res) {
       });
   
       res.status(200).json(reqData);
+      }else{
+        res.status(404).json({message: "no existe data con este id"});
       }
       
       
     } else {
-      return;
+      res.status(404).json({message: "Invalid"});
     }
-  } catch (error) {
-    console.log(error.message)
-  }
 }
