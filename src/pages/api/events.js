@@ -2,38 +2,9 @@ import { API } from "aws-amplify";
 import { createTransaction } from "@/graphql/mutations";
 import { listModuleOnes } from "@/graphql/queries";
 
+
 export default async function handler(req, res) {
-    if (req.method === "POST") {
-    if (req.method === "POST") {
-      // primero validamos que exita el registro en la bd con el numero de trasaccion
-    
-      const allModuleOnes = await API.graphql({
-        query: listModuleOnes,
-      });
-      const existingTransaction =
-        allModuleOnes.data.listModuleOnes.items.filter(
-          (item) => item.transactionId === req.body.data.transaction.id
-        );
-      //console.log(existingTransaction[0])
-      const existing = existingTransaction[0];
-      //console.log(existing)
-        
-      if(existing){
   if (req.method === "POST") {
-      // primero validamos que exita el registro en la bd con el numero de trasaccion
-    
-      const allModuleOnes = await API.graphql({
-        query: listModuleOnes,
-      });
-      const existingTransaction =
-        allModuleOnes.data.listModuleOnes.items.filter(
-          (item) => item.transactionId === req.body.data.transaction.id
-        );
-      //console.log(existingTransaction[0])
-      const existing = existingTransaction[0];
-      //console.log(existing)
-        
-      if(existing){
     // Validaciones para el checksum
     const reqData = req.body.data;
     const checkSumParams = req.body.signature.properties;
