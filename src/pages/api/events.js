@@ -1,6 +1,13 @@
 import { createTransaction } from "@/graphql/mutations";
 import { API } from "aws-amplify";
 
+
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 export default async function handler(req, res) {
   if (req.method === "POST") {
     // Validaciones para el checksum
