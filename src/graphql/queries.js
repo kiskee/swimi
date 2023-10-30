@@ -250,6 +250,29 @@ export const getModuleOne = /* GraphQL */ `
       userName
       userEmail
       userPoolId
+      Transactions {
+        items {
+          amountInCents
+          checksum
+          checksumParams
+          createdAt
+          currency
+          customerEmail
+          environment
+          event
+          id
+          modelID
+          ownCheckSum
+          paymentMethodType
+          redirectUrl
+          reference
+          sentAt
+          status
+          updatedAt
+          transactionId
+          timestamp
+        }
+      }
       createdAt
       updatedAt
       __typename
@@ -279,6 +302,29 @@ export const listModuleOnes = /* GraphQL */ `
         userPoolId
         createdAt
         updatedAt
+        Transactions {
+          items {
+            amountInCents
+            checksum
+            checksumParams
+            createdAt
+            currency
+            customerEmail
+            environment
+            event
+            id
+            modelID
+            ownCheckSum
+            paymentMethodType
+            redirectUrl
+            reference
+            sentAt
+            status
+            updatedAt
+            transactionId
+            timestamp
+          }
+        }
         __typename
       }
       nextToken
@@ -305,6 +351,7 @@ export const getTransaction = /* GraphQL */ `
       sentAt
       ownCheckSum
       checksumParams
+      modelID
       createdAt
       updatedAt
       __typename
@@ -335,6 +382,49 @@ export const listTransactions = /* GraphQL */ `
         sentAt
         ownCheckSum
         checksumParams
+        modelID
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const transactionsByModelID = /* GraphQL */ `
+  query TransactionsByModelID(
+    $modelID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelTransactionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    transactionsByModelID(
+      modelID: $modelID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        transactionId
+        checksum
+        amountInCents
+        reference
+        customerEmail
+        currency
+        paymentMethodType
+        redirectUrl
+        status
+        event
+        environment
+        timestamp
+        sentAt
+        ownCheckSum
+        checksumParams
+        modelID
         createdAt
         updatedAt
         __typename
