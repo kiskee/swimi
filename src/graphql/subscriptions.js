@@ -257,6 +257,10 @@ export const onCreateModuleOne = /* GraphQL */ `
       userName
       userEmail
       userPoolId
+      Transactions {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -281,6 +285,10 @@ export const onUpdateModuleOne = /* GraphQL */ `
       userName
       userEmail
       userPoolId
+      Transactions {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -305,6 +313,10 @@ export const onDeleteModuleOne = /* GraphQL */ `
       userName
       userEmail
       userPoolId
+      Transactions {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -332,6 +344,7 @@ export const onCreateTransaction = /* GraphQL */ `
       sentAt
       ownCheckSum
       checksumParams
+      modelID
       createdAt
       updatedAt
       __typename
@@ -359,6 +372,7 @@ export const onUpdateTransaction = /* GraphQL */ `
       sentAt
       ownCheckSum
       checksumParams
+      modelID
       createdAt
       updatedAt
       __typename
@@ -386,6 +400,7 @@ export const onDeleteTransaction = /* GraphQL */ `
       sentAt
       ownCheckSum
       checksumParams
+      modelID
       createdAt
       updatedAt
       __typename
