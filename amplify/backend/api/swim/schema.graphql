@@ -47,7 +47,6 @@ type ModuleOne @model @auth(rules: [{ allow: public }]) {
   userName: String
   userEmail: String
   userPoolId: String
-  Transactions: [Transaction] @hasMany(indexName: "byModel", fields: ["id"])
 }
 
 type Transaction @model @auth(rules: [{ allow: public }]) {
@@ -67,5 +66,4 @@ type Transaction @model @auth(rules: [{ allow: public }]) {
   sentAt: String
   ownCheckSum: String
   checksumParams: String
-  modelID: ID! @index(name: "byModel")
 }
