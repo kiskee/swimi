@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   const tenMinutesLater = new Date(currentDate.getTime() + 10 * 60 * 1000);
   const formattedDate = tenMinutesLater.toISOString();
 
-  var cadenaConcatenada = `${unicRef}${value}${currency}${process.env.INT_KI}`;
+  var cadenaConcatenada = `${unicRef}${value}${currency}${INT_KI}`;
   console.log(cadenaConcatenada);
   //Ejemplo
   const encondedText = new TextEncoder().encode(cadenaConcatenada);
