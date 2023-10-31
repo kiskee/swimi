@@ -1,5 +1,19 @@
 {
   "api": {
+    "Transactions": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "Transactions"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "swim": {
       "dependsOn": [],
       "output": {
@@ -51,6 +65,25 @@
     }
   },
   "function": {
+    "Transactions": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "Transactions"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "emailcandidate": {
       "build": true,
       "dependsOn": [
@@ -68,6 +101,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_Transactions_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "Transactions"
+        }
+      ]
+    },
+    "AMPLIFY_function_Transactions_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "Transactions"
+        }
+      ]
+    },
     "AMPLIFY_function_emailcandidate_deploymentBucketName": {
       "usedBy": [
         {
@@ -94,6 +143,10 @@
     }
   },
   "storage": {
+    "Transactions": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
     "blogImages": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",

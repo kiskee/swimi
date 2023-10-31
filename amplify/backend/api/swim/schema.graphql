@@ -48,22 +48,3 @@ type ModuleOne @model @auth(rules: [{ allow: public }]) {
   userEmail: String
   userPoolId: String
 }
-
-type Transaction @model @auth(rules: [{ allow: public }]) {
-  id: ID!
-  transactionId: String!
-  checksum: String!
-  amountInCents: Int
-  reference: String
-  customerEmail: String
-  currency: String
-  paymentMethodType: String
-  redirectUrl: String
-  status: String
-  event: String
-  environment: String
-  timestamp: Int
-  sentAt: String
-  ownCheckSum: String
-  checksumParams: String
-}

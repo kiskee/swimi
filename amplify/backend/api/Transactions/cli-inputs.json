@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/trasactions": {
+      "name": "/trasactions",
+      "lambdaFunction": "Transactions",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

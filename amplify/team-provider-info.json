@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-swim-dev-144437-unauthRole",
       "StackName": "amplify-swim-dev-144437",
       "StackId": "arn:aws:cloudformation:us-east-1:101101632782:stack/amplify-swim-dev-144437/8b689d10-25a3-11ee-bf96-0eb058615c75",
-      "AmplifyAppId": "d3lvilxo9mrh77"
+      "AmplifyAppId": "d3lvilxo9mrh77",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-swim-dev-144437-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "function": {
@@ -17,16 +18,22 @@
           "sesEmail": "nieladverse@gmail.com",
           "deploymentBucketName": "amplify-swim-dev-144437-deployment",
           "s3Key": "amplify-builds/emailcandidate-543764395132384b5564-build.zip"
+        },
+        "Transactions": {
+          "deploymentBucketName": "amplify-swim-dev-144437-deployment",
+          "s3Key": "amplify-builds/Transactions-7369544c66755873326c-build.zip"
         }
       },
       "auth": {
         "swim1ad60c46": {}
       },
       "api": {
-        "swim": {}
+        "swim": {},
+        "Transactions": {}
       },
       "storage": {
-        "blogImages": {}
+        "blogImages": {},
+        "Transactions": {}
       }
     }
   }

@@ -1,0 +1,10 @@
+{
+  "resourceName": "Transactions",
+  "tableName": "Transactions",
+  "partitionKey": {
+    "fieldName": "transactionId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
